@@ -35,29 +35,23 @@ const dental = [
  document.write(`<p>Dental - Primera atención: ${dental[0].paciente} - ${dental[0].prevision}  Última atención: ${dental[dental.length - 1].paciente} - ${dental[dental.length - 1].prevision}</p>`);
 
 
- // Tabla Radiología
- document.write('<h2>Consultas de Radiología</h2>');
- document.write('<table>');
- document.write('<tr><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Previsión</th></tr>');
- for (let i = 0; i < radiologia.length; i++) {
-     document.write(`<tr><td>${radiologia[i].hora}</td><td>${radiologia[i].especialista}</td><td>${radiologia[i].paciente}</td><td>${radiologia[i].rut}</td><td>${radiologia[i].prevision}</td></tr>`);
- }
- document.write('</table>');
+ function generarTablaHTML(lista) {
+    let tablaHTML = '<table>';
+    tablaHTML += '<tr><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Previsión</th></tr>';
+    for (let i = 0; i < lista.length; i++) {
+        tablaHTML += `<tr>
+        <td>${lista[i].hora}</td>
+        <td>${lista[i].especialista}</td>
+        <td>${lista[i].paciente}</td>
+        <td>${lista[i].rut}</td>
+        <td>${lista[i].prevision}</td>
+        </tr>`;
+    }
+    tablaHTML += '</table>';
+    return tablaHTML;
+}
 
- // Tabla Traumatología
- document.write('<h2>Consultas de Traumatología</h2>');
- document.write('<table>');
- document.write('<tr><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Previsión</th></tr>');
- for (let i = 0; i < traumatologia.length; i++) {
-     document.write(`<tr><td>${traumatologia[i].hora}</td><td>${traumatologia[i].especialista}</td><td>${traumatologia[i].paciente}</td><td>${traumatologia[i].rut}</td><td>${traumatologia[i].prevision}</td></tr>`);
- }
- document.write('</table>');
-
- // Tabla Dental
- document.write('<h2>Consultas de Dental</h2>');
- document.write('<table>');
- document.write('<tr><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Previsión</th></tr>');
- for (let i = 0; i < dental.length; i++) {
-     document.write(`<tr><td>${dental[i].hora}</td><td>${dental[i].especialista}</td><td>${dental[i].paciente}</td><td>${dental[i].rut}</td><td>${dental[i].prevision}</td></tr>`);
- }
- document.write('</table>');
+// Insertar cada tabla en el contenedor correspondiente
+document.getElementById('tabla-radiologia').innerHTML = '<h2>Consultas de Radiología</h2>' + generarTablaHTML(radiologia);
+document.getElementById('tabla-traumatologia').innerHTML = '<h2>Consultas de Traumatología</h2>' + generarTablaHTML(traumatologia);
+document.getElementById('tabla-dental').innerHTML = '<h2>Consultas de Dental</h2>' + generarTablaHTML(dental);
